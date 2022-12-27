@@ -1,0 +1,117 @@
+
+body{
+    transition: .4s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+*{
+box-sizing: border-box;
+}
+
+.control-buttons{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #2196f3c7;
+}
+.control-buttons span{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    border: solid 2px #ececec;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #FFF;
+    font-size: 30px;
+    background-color: #e91e63b0;
+
+}
+
+
+.info-container{
+    width: 1000px;
+ display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+   margin: 20px auto;
+    background-color: #ececec;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #2196f3;
+}
+
+.info-container .name{}
+.info-container .tries{}
+
+.memory-game-blocks{
+display: grid;
+grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+gap: 20px 20px;
+cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.memory-game-blocks.no-cliking{
+    pointer-events: none;
+}
+.memory-game-blocks .game-block{
+  height: 200px;
+  transition: transform .5s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  flex: 1 0 200px;
+  margin: 0 10px 20px;
+
+  
+}
+
+.memory-game-blocks .game-block .front{
+ background-color: #333;
+  line-height: 200px;
+}
+.memory-game-blocks .game-block .front::before{
+ content: '!';
+  color: #FFF;
+  font-size: 140px;
+  font-weight: bold;
+
+}
+.memory-game-blocks .game-block .back{
+  background-color: #607D8B;
+  transform: rotateY(180deg);
+}
+.memory-game-blocks .game-block .face {
+      position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  backface-visibility: hidden;
+  border: 5px solid #2196F3;
+}
+.memory-game-blocks .game-block .face i{
+    font-size: 100px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        width: 100%;
+    height: 100%;
+}
+
+.memory-game-blocks .game-block.is-filpped,
+.memory-game-blocks .game-block.is-matched{
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+ 
+
+
