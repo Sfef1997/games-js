@@ -39,6 +39,7 @@ body {
 .info .text2 span{
   color: var(--main-color);
 }
+.play-agin-btn,
 .info button{
   padding: 10px;
     font-size: 20px;
@@ -47,6 +48,26 @@ body {
     border-radius: 8px;
     border: none;
     cursor: pointer;
+}
+
+.play-agin{
+    padding-top:10px;
+    display: flex;
+    justify-content: center;
+}
+.play-agin-btn{
+  display: none !important;
+}
+.play-agin .active{
+  cursor: pointer;
+  display: block !important;
+}
+.play-agin-btn {
+  display: flex;
+  justify-content: center;
+  background-color: #009688;
+  color: #fff;
+  cursor: none;
 }
 
 .game {
