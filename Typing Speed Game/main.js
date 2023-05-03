@@ -61,14 +61,14 @@ let normalLvl=document.querySelector("#normal")
 let hardLvl=document.querySelector("#hard")
 let gameInfo=document.querySelector(".info")
 let btnInfo=document.querySelector(".info button")
-
+let playAginBtn = document.querySelector(".play-agin-btn")
 //  hidden the info Block
 
 btnInfo.onclick=function(){
         gameInfo.style.display="none"
 }
 
-//  setting level Name + Secound +Score
+//  setting level Name + Secound + Score
 let defualtLevelName = "Easy"; 
 let defualtLevelSecound=lvls[defualtLevelName];
 lvlNameSpan.innerHTML=defualtLevelName;
@@ -85,7 +85,7 @@ lvlNameSpan.innerHTML=event.target.value
 if(lvlNameSpan.innerHTML=="Easy"){
        defualtLevelName="Easy";
        secondsSpan.innerHTML="8";
-       defualtLevelSecound=secondsSpan.innerHTML;
+       defualtLevelSecound = secondsSpan.innerHTML;
     
 }else if(lvlNameSpan.innerHTML=="Normal"){
         defualtLevelName="Normal";
@@ -116,23 +116,20 @@ startButton.onclick=function(){
 // ####################
 function genWords(){
 //  Get Random Word From Araay
-
 let randomWord= words[Math.floor(Math.random() * words.length)]
 
 //  Get word Index
 let indexWord=Math.floor(Math.random() * words.length)
-//  Remove Word From Array
 
+//  Remove Word From Array
 words.splice(indexWord,1);
 //  Show the Random Word
-theWord.innerHTML=randomWord;
+theWord.innerHTML = randomWord;
 // Empty upcoming Word
 upcomingWords.innerHTML = "";
 //  Generate words
-
 for(let i=0; i<words.length; i++){
 //  creat Div Element
-
 let  div =document.createElement("div")
 let txt= document.createTextNode(words[i]);
 div.appendChild(txt)
@@ -143,7 +140,6 @@ upcomingWords.append(div)
   
 };
 // #########################
-
 function startPlay(){
     timeLeftSpan.innerHTML = defualtLevelSecound;
     let start= setInterval(() => {
@@ -161,17 +157,15 @@ function startPlay(){
             //  Save the score in localStorage
             window.localStorage.setItem("score",scoreGot.innerHTML)
             window.localStorage.getItem("score")
-           
             if(words.length > 0){
                 //  call GenWords Funtion
                 genWords();
             }else{
-                let span=document.createElement("span")
+                let span = document.createElement("span")
                 span.className="good";
                 let spanTxt= document.createTextNode("good job")
                 span.appendChild(spanTxt)
                 finishMessage.appendChild(span)
-
                 //  Remove uupcoming Wods Box
                 upcomingWords.remove();
             } 
@@ -181,12 +175,14 @@ function startPlay(){
                 let spanTxt=document.createTextNode("Game Over")
                 span.appendChild(spanTxt)
                 finishMessage.append(span)
+                // Remove UpcomingWords Box
+                upcomingWords.innerHTML = ""
                 // Display the scoure when the Game Finsih
+                playAgin()
                 if(window.localStorage.getItem("score")){
-                     let div=document.createElement("div")
-                    let txt=document.createTextNode(`your Score is :${window.localStorage.getItem("score")}`)
-                        div.appendChild(txt)
-                        loScore.appendChild(div)
+                    console.log("yes")
+                   ShowScore()
+                   playAgin()
                     }
                       //  Remove the local Storage by onload the page  
                         clearLocalStorage();
@@ -194,9 +190,22 @@ function startPlay(){
         }
     }, 1000); 
 }
-
-
 //  clear local Storage Function
 function clearLocalStorage(){
-                window.onload= window.localStorage.clear()
+        window.onload= window.localStorage.clear()
 }
+
+// function To Show The Score 
+function ShowScore (){
+    let div=document.createElement("div")
+    let txt=document.createTextNode(`your Score is :${window.localStorage.getItem("score")}`)
+    div.appendChild(txt)
+    loScore.appendChild(div)
+}
+//  function To Reolad The Page
+function playAgin (){
+    playAginBtn.classList.add("active")
+    playAginBtn.addEventListener("click",function(){
+        location.reload()
+    })
+};
